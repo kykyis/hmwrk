@@ -2,18 +2,17 @@ version: '3.6'
 services:
 
   influxdb:
-    image: influxdb:1.8
+    image: influxdb:${INFLUXDB_V}
     env_file: cfg.env
     ports:
       - 8086:8086
     volumes:      
       - influxdb_data:/var/lib/influxdb
-
     networks:
       - monitoring
 
   grafana:
-    image: grafana/grafana:7.5.5
+    image: grafana/grafana:${GRAFANA_V}
     depends_on:
       - influxdb
     env_file: cfg.env
